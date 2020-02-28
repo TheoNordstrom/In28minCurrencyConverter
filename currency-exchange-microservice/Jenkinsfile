@@ -17,4 +17,15 @@ pipeline {
 			}
 		}
 	}
+	post {
+		always {
+			echo "Text always show"
+		}
+		success {
+			echo "Build pipeling success"
+		}
+		failure {
+			echo "Build pipeline failed"
+		}
+	}
 }
