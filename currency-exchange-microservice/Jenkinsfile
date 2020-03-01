@@ -36,7 +36,7 @@ pipeline {
 		}
 		stage('Package') {
 			steps {
-				sh "mvn package -DskipTest"
+				sh "mvn -f currency-exchange-microservice/pom.xml package -DskipTest"
 			}
 		}
 		stage('Build Docker Image') {
