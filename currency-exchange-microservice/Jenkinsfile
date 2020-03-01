@@ -51,9 +51,11 @@ pipeline {
 			steps {
 				script {
 					docker.withRegistrty('','ttnconsultDocker') {  // first arg is the dockerhub, where empty means default = dockerhub
+						echo "docker push"
 						dockerImage.push();
 						dockerImage.push('latest');
 					}
+					echo "docker push is finished"
 				}
 			}
 		}
