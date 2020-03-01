@@ -43,7 +43,7 @@ pipeline {
 			steps {
 				// "docker build -t ttnconsult/In28minCurrencyConverter:$env.BUILD_TAG"
 				script {
-					dockerImage = docker.build("ttnconsult/In28minCurrencyConverter:${env.BUILD_TAG}")
+					dockerImage = docker.build("ttnconsult/in28mincurrencyconverter:${env.BUILD_TAG}")
 				}
 			}
 		}
