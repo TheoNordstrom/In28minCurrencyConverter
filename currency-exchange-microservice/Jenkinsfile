@@ -34,6 +34,29 @@ pipeline {
 				sh "mvn -f currency-exchange-microservice/pom.xml failsafe:integration-test failsafe:verify"
 			}
 		}
+		stage('Package') {
+			steps {
+				sh "mvn package -DskipTest"
+			}
+		}
+		stage('Build Docker Image') {
+			steps {
+				// "docker build -t ttnconsult/In28minCurrencyConverter:$env.BUILD_TAG"
+				script {
+					dockerImage = docker.build("ttnconsult/In28minCurrencyConverter:${env.BUILD_TAG}")
+				}
+			}
+		}
+		stage('Push Docker Image') {
+			steps {
+				script {
+					docker.withRegistrty('','ttnconsultDocker') {  // first arg is the dockerhub, where empty means default = dockerhub
+						dockerImage.push();
+						dockerImage.push('latest');
+					}
+				}
+			}
+		}
 	}
 	post {
 		always {
