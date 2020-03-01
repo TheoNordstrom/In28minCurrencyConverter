@@ -51,7 +51,7 @@ pipeline {
 			steps {
 				script {
 					echo "docker push is starting"
-					docker.withRegistrty('','ttnconsultDocker') {  // first arg is the dockerhub, where empty means default = dockerhub
+					docker.withRegistry('','ttnconsultDocker') {  // first arg is the dockerhub, where empty means default = dockerhub
 						echo "docker push"
 						dockerImage.push();
 						dockerImage.push('latest');
