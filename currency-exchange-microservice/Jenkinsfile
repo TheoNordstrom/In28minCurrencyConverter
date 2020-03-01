@@ -50,6 +50,7 @@ pipeline {
 		stage('Push Docker Image') {
 			steps {
 				script {
+					echo "docker push is starting"
 					docker.withRegistrty('','ttnconsultDocker') {  // first arg is the dockerhub, where empty means default = dockerhub
 						echo "docker push"
 						dockerImage.push();
